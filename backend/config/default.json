@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://ensar123:ensar123@amygdal.xutaq.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken"
+}
