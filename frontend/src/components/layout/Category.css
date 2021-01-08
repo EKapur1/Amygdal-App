@@ -1,0 +1,39 @@
+.container {
+ display: flex;
+ flex-direction: row;
+ width: 100%;
+ flex-wrap: wrap;
+}
+.navbar {
+    background-color: rgb(145, 144, 144);
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.controlbar {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.add-btn {
+    justify-content: flex-end;
+    margin-right: 10%;
+}
+
+.category-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.logout-btn {
+    margin-right: 40px;
+}
+
+.heading {
+    margin-left: 40px;
+}

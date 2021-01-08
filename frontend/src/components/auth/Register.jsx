@@ -33,7 +33,7 @@ const Register = () => {
         password: password,
       };
       axios
-        .post('http://localhost:3000/api/registration', newUser)
+        .post('http://localhost:5000/api/registration', newUser)
         .then((response) => {
           console.log('Success');
         });

@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({
-  taskList: {
+  categoryName: {
     type: String,
     required: true,
+  },
+  categoryId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'category',
   },
   text: {
     type: String,

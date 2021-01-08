@@ -69,6 +69,30 @@ router.get('/:user_id', auth, async (req, res) => {
   }
 });
 
+// @route  PUT api/category/:id
+// @desc   Add task to category
+// @access Private
+/*
+router.put('/tasks/:id', auth, async (req, res) => {
+  try {
+    const category = await Category.findOne({ id: req.params.id });
+
+    //const task = {
+    //    categoryName: req.body.name,
+    //}
+    category.tasks.unshift(req.body);
+
+    category.tasks
+
+    await category.save();
+
+    res.json(category);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+*/
 /*router.get('/user/:user_id', checkObjectId('user_id'), async ({ params: { user_id } }, res) => {
     try {
       const profile = await Profile.findOne({

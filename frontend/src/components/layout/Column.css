@@ -1,0 +1,9 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 250px;
+    padding: 10px;
+    background-color: lightblue;
+    margin: 10px;
+}

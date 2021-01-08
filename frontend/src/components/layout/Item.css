@@ -1,0 +1,19 @@
+.item {
+    width: 100%;
+    height: 40px;
+    background-color: lightgray;
+    margin: 10px 0;
+}
+
+.hold{
+    border: solid #ccc 4px;
+    color: pink;
+}
+
+.hovered{
+    background-color: lightblue;
+}
+
+.invisible {
+    display: none;
+}

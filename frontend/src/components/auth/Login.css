@@ -22,9 +22,14 @@
     font-size: 18px;
     border: none;
     outline: none;
-    transition: opacity 0.2s ease-in;
     cursor: pointer;
+    transition: all 0.4s ease 0s;
 }
+.login-btn:hover {
+  background: #573374;
+  color: white;
+  transition: all 0.4s ease 0s;
+  }
 
 .login-container section{
     padding: 70px 20px 20px 20px;
@@ -49,18 +54,26 @@
   .links {
     text-decoration: none;
   }
+  .links{
+    margin-left: 5px;
+  }
 
 @media (max-width: 1024px) {
 .login-container{
     display: block;
     margin: 0;
-}
-.login-container .img{
+  }
+  section{
+  display: block;
+	margin: auto;
+	width: 250px;
+  }
+  .login-container .img{
     display: none;
   }
-.login-container section form{
+  .login-container section form{
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr;
 }
 }

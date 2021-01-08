@@ -7,6 +7,7 @@ class AuthenticationService {
       '/login',
       JSON.stringify(credentials)
     );
+
     AuthenticationHelper.setToken(token);
   }
 
@@ -17,6 +18,8 @@ class AuthenticationService {
     );
     AuthenticationHelper.setToken(token);
   }
+
+  static logout() {}
 }
 
 export default AuthenticationService;
