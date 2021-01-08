@@ -1,0 +1,103 @@
+.reg-container{
+  font-family: 'Montserrat';
+    display: grid; 
+    height: 100vh;
+    grid-template-columns: 0.7fr 1.3fr;
+    column-gap: 20px;
+    margin-right: 10px;
+}
+.reg-container .img{
+  padding: 0;
+  margin: 0;
+}
+.img{
+    display: flex;
+    flex-direction: column;
+}
+
+.img .lottery{
+    margin: 10px auto 0px auto;
+    max-width: 300px;
+    height: auto;
+}
+.register-head{
+  
+  font-weight: 600;
+  color: rgb(65, 64, 64);
+}
+.lead-register{
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+}
+
+.img img{
+  margin: auto;
+  margin-top: 100px;
+  margin-left: 30px;
+  width: 100%;
+  height: auto;
+}
+.reg-container section form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+.reg-container section{
+  padding: 60px;
+}
+
+.register-btn{
+    font-size: 18px;
+    background-color: #875aac;
+    color: white;
+    width: 160px; 
+    height: 40px;
+    border: none;
+    outline: none;
+    transition: opacity 0.2s ease-in;
+    cursor: pointer;
+}
+  
+  
+  
+  /* Mobile Styles */
+  @media (max-width: 1024px) {
+    /* Register */
+    .reg-container{
+        display: block;
+    }
+    .reg-container .img{
+        display: none;
+      }
+    .reg-container section form{
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Forms */
+.form .form-group {
+  margin: 1.2rem 0;
+}
+
+.form {
+  display: block;
+  margin-top: 0.3rem;
+  color: black;
+}
+
+.form input[type='text'],
+.form input[type='email'],
+.form input[type='password'],
+.form input[type='date'],
+.form input[type='tel'],
+.form select,
+.form textarea {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+} 

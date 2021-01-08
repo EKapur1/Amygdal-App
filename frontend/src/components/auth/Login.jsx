@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../img/lottery-display.png';
 import lottery from '../../img/lottery.svg';
 import axios from 'axios';
+import './Login.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -19,10 +20,9 @@ const Login = () => {
     e.preventDefault();
     const userLog = {
       email: email,
-      password: password
-    }
-    axios.post('http://localhost:5000/api/login', userLog)
-      .then((response) => {
+      password: password,
+    };
+    axios.post('http://localhost:5000/api/login', userLog).then((response) => {
       console.log(response.data);
     });
     console.log('Success');
@@ -37,9 +37,9 @@ const Login = () => {
         <img src={logo} alt='' />
       </div>
       <section>
-        <h1 className='large text-primary'>Log In</h1>
+        <h1 className='title'>Log In</h1>
         <p className='lead'>
-          <i className='fas fa-user'></i> Log In Into Your Account
+          <i></i> Log In Into Your Account
         </p>
         <form className='form' onSubmit={(e) => onSubmit(e)}>
           <div className='form-group'>
@@ -61,17 +61,18 @@ const Login = () => {
               minLength='6'
             />
           </div>
-          <input
-            type='submit'
-            className='btn btn-primary login-btn'
-            value='Login'
-          />
+          <input type='submit' className='login-btn' value='Login' />
         </form>
         <p className='my-1'>
-          Don't have an account? <Link to='/register'>Sign Up</Link>
+          Don't have an account?{' '}
+          <Link to='/register' className='links'>
+            Sign Up
+          </Link>
         </p>
         <p className='my-1'>
-          <Link to='/'>← Go Back to Home Page</Link>
+          <Link to='/' className='links'>
+            ← Go Back to Home Page
+          </Link>
         </p>
       </section>
     </div>

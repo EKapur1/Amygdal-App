@@ -1,0 +1,86 @@
+.login-container{
+    color: rgb(73, 72, 72);
+    display: grid;
+    height: 100vh;
+    grid-template-columns:  1.1fr 0.9fr;
+    column-gap: 70px;
+    margin-right: 10px;
+    font-family: 'Montserrat'; 
+    font-weight: 600;
+}
+.login-container section .form{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.login-btn{
+    width: 120px; 
+    height: 50px;
+    background-color: #875aac;
+    color: white;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    transition: opacity 0.2s ease-in;
+    cursor: pointer;
+}
+
+.login-container section{
+    padding: 70px 20px 20px 20px;
+  }
+
+  .login-container .form-group {
+      max-width: 300px;
+  }
+
+  .login-container img{
+      margin-top: 10px;
+  }
+
+  .title{
+      font-size: 44px;
+      
+  }
+  .lead{
+      font-size: 18px;
+  }
+
+  .links {
+    text-decoration: none;
+  }
+
+@media (max-width: 1024px) {
+.login-container{
+    display: block;
+    margin: 0;
+}
+.login-container .img{
+    display: none;
+  }
+.login-container section form{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+}
+}
+
+  /* Forms */
+  .form .form-group {
+    margin: 1.2rem 0;
+  }
+  
+  .form {
+    display: block;
+    margin-top: 0.3rem;
+    color: rgb(0, 0, 0);
+  }
+  
+  .form input[type='email'],
+  .form input[type='password'] {
+    display: block;
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+  } 

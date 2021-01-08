@@ -1,0 +1,76 @@
+.landing {
+  background: linear-gradient(90deg,#a091dd 0%,#1c96cf 100%);
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  width: 100%;
+}
+  .landing-inner {
+    color: white;
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .buttons{
+      display: inline-block;
+  }
+  h1{
+      font-size: 60px;
+      margin-bottom: 30px;
+      margin: 0;
+      font-weight: 1000;
+  }
+  .landing-btn{
+    padding: 10px 26px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+  .landing-btn-login{
+    margin-left: 5px;
+    background-color: white;
+    color: black;
+    
+  }
+  .landing-register-btn{
+    margin-right: 5px;
+    color: white;
+    background-color: #875aac;
+  }
+  
+  /* Mobile Styles */
+  @media (max-width: 1024px) {
+    /* Landing */
+      .landing {
+        position: relative;
+        height: 100vh;
+      }
+      .landing-inner{
+          margin: auto;
+      }
+      h1{
+          font-size: 40px;
+      }
+      .landing .lead{
+        font-size: 14px;
+    }
+    .landing .buttons{
+        display: flex;
+        flex-direction: column;
+    }
+    .landing .landing-btn-login{
+        margin: 10px auto 0 auto;
+        width: 80px;
+    } 
+  }

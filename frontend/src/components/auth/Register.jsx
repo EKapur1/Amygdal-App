@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../img/lottery-display.png';
 import lottery from '../../img/lottery.svg';
 import axios from 'axios';
+import './Register.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const Register = () => {
     surname: '',
     phone: '',
     email: '',
-    password: '', 
+    password: '',
     password2: '',
   });
 
@@ -23,19 +24,19 @@ const Register = () => {
     e.preventDefault();
     if (password !== password2) {
       console.log('Passwords do not match');
-    } 
-    else {
+    } else {
       const newUser = {
         name: name,
         surname: surname,
         phone: phone,
         email: email,
-        password: password, 
-      }
-      axios.post('http://localhost:3000/api/registration', newUser)
-      .then((response) => {
-      console.log("Success");
-      });
+        password: password,
+      };
+      axios
+        .post('http://localhost:3000/api/registration', newUser)
+        .then((response) => {
+          console.log('Success');
+        });
       console.log(newUser);
     }
   };
@@ -49,10 +50,9 @@ const Register = () => {
         <img src={logo} alt='' />
       </div>
       <section>
-        <h1 className='large text-primary'>Register</h1>
-        <p className='lead'>
-          <i className='fas fa-user'></i>Use Lottery Display the way your team
-          works best.
+        <h1 className='register-head'>Register</h1>
+        <p className='lead-register'>
+          Use Lottery Display the way your team works best.
         </p>
         <small>
           Let's helps teams work more collaboratively and get more done.
@@ -120,7 +120,7 @@ const Register = () => {
           </div>
           <input
             type='submit'
-            className='btn btn-primary register-btn'
+            className='register-btn'
             value='Create Account'
           />
         </form>
