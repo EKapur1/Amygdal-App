@@ -11,25 +11,17 @@ const Category = () => {
   useEffect(() => {
     if (!localStorage.getItem('token')) setHasToken(false);
     else setHasToken(true);
-  }, [setHasToken]);
+  }, [hasToken]);
 
   const [columns, setColumns] = useState([
     {
       id: 0,
       name: 'Column 1',
     },
-    {
-      id: 1,
-      name: 'Column 2',
-    },
   ]);
 
   const [items, setItems] = useState([
     { id: 0, text: 'Play footbal', category: 0 },
-    { id: 1, text: 'Meeting', category: 0 },
-    { id: 2, text: 'Deploy', category: 1 },
-    { id: 3, text: 'Training', category: 1 },
-    { id: 4, text: 'End', category: 1 },
   ]);
 
   const logout = () => {

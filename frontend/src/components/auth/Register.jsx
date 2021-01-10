@@ -29,7 +29,12 @@ const Register = () => {
 
   const [visible, setVisible] = useState(false);
 
-  const onDismiss = () => setVisible(false);
+  const [errVisible, setErrVisible] = useState(false);
+
+  const onDismiss = () => {
+    setVisible(false);
+    setErrVisible(false);
+  };
 
   const { name, surname, phone, email, password, password2 } = formData;
 
@@ -50,8 +55,18 @@ const Register = () => {
       };
       axios
         .post('http://localhost:5000/api/registration', newUser)
-        .then((response) => {
-          AuthenticationHelper.setToken(response.data.token);
+        .then(
+          (response) => {
+            AuthenticationHelper.setToken(response.data.token);
+          },
+          (error) => {
+            if (error.response.data.msg === 'User already exists')
+              setErrVisible(true);
+          }
+        )
+        .then(() => {
+          if (localStorage.getItem('token')) setHasToken(true);
+          else setHasToken(false);
         });
     }
   };
@@ -69,6 +84,14 @@ const Register = () => {
             <img src={logo} alt='' />
           </div>
           <section>
+            <Alert
+              className='reg-alert'
+              color='warning'
+              isOpen={errVisible}
+              toggle={onDismiss}
+            >
+              User already exists
+            </Alert>
             <Alert
               className='reg-alert'
               color='primary'
