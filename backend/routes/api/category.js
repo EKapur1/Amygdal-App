@@ -142,16 +142,11 @@ router.delete('/:cat_id/:id', [auth], async (req, res) => {
   try {
     const id = req.params.id;
     const cat_id = req.params.cat_id;
-    const category = Category.findOneAndUpdate(
-      { _id: cat_id },
-      { $pull: { tasks: { _id: id } } },
-      { new: true },
-      function (err) {
-        if (err) {
-          console.log(err);
-        }
-      }
-    );
+    const category = await Category.findById(cat_id);
+
+    category.tasks = category.tasks.filter(({ id }) => id !== req.params.id);
+
+    await category.save();
     res.json(category);
   } catch (err) {
     console.error(err.message);
