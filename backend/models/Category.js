@@ -10,9 +10,21 @@ const CategorySchema = new mongoose.Schema({
   },
   tasks: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'tasks',
-      default: undefined,
+      categoryName: {
+        type: String,
+      },
+      categoryId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category',
+      },
+      text: {
+        type: String,
+        required: true,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
     },
   ],
   date: {

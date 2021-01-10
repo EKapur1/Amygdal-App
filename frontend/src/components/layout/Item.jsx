@@ -1,5 +1,6 @@
 import React from 'react';
 import './Item.css';
+import clock from '../../img/clock.png';
 
 const Item = ({ item }) => {
   const onDragStart = (event, id) => {
@@ -13,6 +14,9 @@ const Item = ({ item }) => {
       onDragStart={(event) => onDragStart(event, item.id)}
     >
       <p>{item.text}</p>
+      <div className='item-footer'>
+        <img src={clock} alt='clock' /> April 6
+      </div>
     </div>
   );
 };

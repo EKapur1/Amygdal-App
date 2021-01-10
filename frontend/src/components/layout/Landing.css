@@ -17,31 +17,40 @@
   }
   .buttons{
       display: inline-block;
-  }
-  h1{
+    }
+    h1{
       font-size: 60px;
       margin-bottom: 30px;
       margin: 0;
       font-weight: 1000;
+    }
+    .landing-btn{
+      padding: 10px 26px;
+      text-align: center;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+    .landing-btn-login{
+      margin-left: 5px;
+      background-color: white;
+      color: black;
   }
-  .landing-btn{
-    padding: 10px 26px;
-    text-align: center;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    vertical-align: middle;
-  }
-  .landing-btn-login{
-    margin-left: 5px;
-    background-color: white;
+  .landing-btn-login:hover{
+    background-color: rgb(238, 232, 232);
     color: black;
-    
+    text-decoration: none;
+  }
+  .landing-register-btn:hover{
+    background-color: #75429e;
+    color: white;
+    text-decoration: none;
   }
   .landing-register-btn{
     margin-right: 5px;
@@ -71,6 +80,6 @@
     }
     .landing .landing-btn-login{
         margin: 10px auto 0 auto;
-        width: 80px;
+        width: 110px;
     } 
   }

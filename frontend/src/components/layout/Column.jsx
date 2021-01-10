@@ -14,7 +14,15 @@ const Column = ({ items, name, category, onDrop }) => {
         onDrop(event, category);
       }}
     >
-      <h1>{name}</h1>
+      <div className='head-col'>
+        <label>
+          <strong>{name}</strong>
+        </label>
+        <div className='col-btns'>
+          <button className='add-task-btn'>Add</button>
+          <button className='del-col-btn'>✖</button>
+        </div>
+      </div>
       {items.map((item) => (
         <Item item={item} key={item.id} />
       ))}

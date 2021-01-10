@@ -41,7 +41,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 20px;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 .reg-container section{
   padding: 60px;
@@ -55,8 +55,11 @@
     height: 40px;
     border: none;
     outline: none;
-    transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in; 
     cursor: pointer;
+}
+.register-btn:hover{
+  background-color: #77499c;
 }
   
   
@@ -86,6 +89,11 @@
   display: block;
   margin-top: 0.3rem;
   color: black;
+}
+
+.reg-alert{
+  display: block;
+  width: 100%;
 }
 
 .form input[type='text'],

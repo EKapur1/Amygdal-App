@@ -1,9 +1,41 @@
 .column {
+    font-family: 'Montserrat';
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    height: 500px;
+    min-height: 140px;
+    height: fit-content;
     width: 250px;
     padding: 10px;
-    background-color: lightblue;
+    background-color: rgb(243, 243, 243);
     margin: 10px;
+    color: rgb(0, 0, 0);
+}
+
+.head-col {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.del-col-btn,
+.add-task-btn {
+    border: none;
+    width: 30px;
+    height: auto;
+    border-radius: 50%;
+    margin: 0 3px 0 3px;
+    padding: 3px;
+    background-color: rgb(199, 199, 199);
+    font-size: 16px;
+    outline: none;
+}
+.add-task-btn {
+    width: 50px;
+    border-radius: 10%;
+}
+
+.del-col-btn:hover,
+.add-task-btn:hover {
+    background-color: rgb(114, 114, 114);
+    color: white;
 }

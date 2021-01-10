@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import logo from '../../img/lottery-display.png';
 import lottery from '../../img/lottery.svg';
+import { Alert } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 import './Login.css';
 
@@ -15,7 +17,9 @@ const Login = () => {
     else setHasToken(true);
   }, [hasToken]);
 
-  // const [isSubmited, setIsSubmited] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const onDismiss = () => setVisible(false);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -37,6 +41,9 @@ const Login = () => {
       localStorage.setItem('token', JSON.stringify(response.data.token));
       setHasToken(true);
     });
+    if (password === '') {
+      setVisible(true);
+    }
   };
 
   return (
@@ -52,6 +59,14 @@ const Login = () => {
             <img src={logo} alt='' />
           </div>
           <section>
+            <Alert
+              className='reg-alert'
+              color='primary'
+              isOpen={visible}
+              toggle={onDismiss}
+            >
+              Invalid password or e-mail
+            </Alert>
             <h1 className='title'>Log In</h1>
             <p className='lead'>
               <i></i> Log In Into Your Account

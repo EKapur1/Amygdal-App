@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Column from '../layout/Column';
 import { Link } from 'react-router-dom';
@@ -12,7 +11,7 @@ const Category = () => {
   useEffect(() => {
     if (!localStorage.getItem('token')) setHasToken(false);
     else setHasToken(true);
-  });
+  }, [setHasToken]);
 
   const [columns, setColumns] = useState([
     {
@@ -26,11 +25,11 @@ const Category = () => {
   ]);
 
   const [items, setItems] = useState([
-    { id: 0, text: 'Item 1', category: 0 },
-    { id: 1, text: 'Item 2', category: 0 },
-    { id: 2, text: 'Item 3', category: 1 },
-    { id: 3, text: 'Item 4', category: 1 },
-    { id: 4, text: 'Item 5', category: 1 },
+    { id: 0, text: 'Play footbal', category: 0 },
+    { id: 1, text: 'Meeting', category: 0 },
+    { id: 2, text: 'Deploy', category: 1 },
+    { id: 3, text: 'Training', category: 1 },
+    { id: 4, text: 'End', category: 1 },
   ]);
 
   const logout = () => {
@@ -59,8 +58,33 @@ const Category = () => {
     <div className='category-wrapper'>
       <div className='navbar'>
         <label className='heading'>Lottery Display</label>
-        <div className='logout-btn' onClick={logout}>
-          <Link to='/'>Logout</Link>
+        <div className='logout-btn-cat'>
+          <Link
+            style={{
+              backgroundColor: 'white',
+              textDecoration: 'none',
+              color: 'black',
+              padding: '5px 10px 8px 10px',
+              borderRadius: '5px',
+              marginRight: '5px',
+            }}
+            to='/profile'
+          >
+            Profile
+          </Link>
+          <Link
+            onClick={logout}
+            style={{
+              backgroundColor: 'white',
+              textDecoration: 'none',
+              color: 'black',
+              padding: '5px 10px 8px 10px',
+              borderRadius: '5px',
+            }}
+            to='/'
+          >
+            Logout
+          </Link>
         </div>
       </div>
       {hasToken && (

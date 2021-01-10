@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const User = require('../../models/User');
-const Tasks = require('../../models/Tasks');
 const Category = require('../../models/Category');
 const jwt = require('jsonwebtoken');
 const config = require('config');
@@ -69,20 +68,22 @@ router.get('/:user_id', auth, async (req, res) => {
   }
 });
 
-// @route  PUT api/category/:id
+// @route  PUT api/category/:category_id
 // @desc   Add task to category
 // @access Private
-/*
-router.put('/tasks/:id', auth, async (req, res) => {
+
+router.put('/tasks/:category_id', auth, async (req, res) => {
+  const token = req.header('x-auth-token');
   try {
-    const category = await Category.findOne({ id: req.params.id });
-
-    //const task = {
-    //    categoryName: req.body.name,
-    //}
-    category.tasks.unshift(req.body);
-
-    category.tasks
+    const category = await Category.findOne({ _id: req.params.category_id });
+    const decoded = jwt.verify(token, config.get('jwtSecret'));
+    const task = {
+      user: decoded.user.id,
+      categoryName: category.name,
+      categoryId: category.id,
+      text: req.body.text,
+    };
+    category.tasks.push(task);
 
     await category.save();
 
@@ -92,7 +93,7 @@ router.put('/tasks/:id', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-*/
+
 /*router.get('/user/:user_id', checkObjectId('user_id'), async ({ params: { user_id } }, res) => {
     try {
       const profile = await Profile.findOne({

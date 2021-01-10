@@ -1,11 +1,9 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './Landing.css';
 
 const Landing = () => {
-  const [hasToken, setHasToken] = useState(
-    localStorage.getItem('token') ? true : false
-  );
+  const [hasToken] = useState(localStorage.getItem('token') ? true : false);
 
   return (
     <>
