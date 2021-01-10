@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Column from '../layout/Column';
 import { Link } from 'react-router-dom';
+import AuthenticationHelper from '../../helpers/AuthenticationHelper';
 import './Category.css';
 
 const Category = () => {
   const [hasToken, setHasToken] = useState(
     localStorage.getItem('token') ? true : false
   );
+
+  let config = {
+    headers: {
+      'x-auth-token': AuthenticationHelper.getToken(),
+    },
+  };
 
   useEffect(() => {
     if (!localStorage.getItem('token')) setHasToken(false);
@@ -15,8 +22,9 @@ const Category = () => {
 
   const [columns, setColumns] = useState([
     {
-      id: 0,
-      name: 'Column 1',
+      name: 'Prva kategorija',
+      tasks: [],
+      date: '',
     },
   ]);
 
