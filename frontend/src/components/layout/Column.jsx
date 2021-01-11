@@ -2,13 +2,29 @@ import React, { useState } from 'react';
 import './Column.css';
 import CategoryService from '../../services/CategoryService';
 import Item from './Item';
+import TaskService from '../../services/TaskService';
 
-const Column = ({ category, onDrop, setColumns }) => {
+const Column = ({ category, setColumns }) => {
   const [name, setName] = useState(category.name);
+  const [newTaskName, setNewTaskName] = useState('');
 
   const onDragOver = (event) => {
     event.preventDefault();
   };
+
+  const onDrop = (event, category) => {
+    let draggedItem = JSON.parse(event.dataTransfer.getData('item'));
+    let draggedCategory = JSON.parse(event.dataTransfer.getData('category'));
+
+    TaskService.switchCategories(draggedCategory, category, draggedItem).then(
+      () => {
+        CategoryService.getCategories().then((categories) => {
+          setColumns(categories);
+        });
+      }
+    );
+  };
+
   return (
     <div
       className='column'
@@ -48,18 +64,37 @@ const Column = ({ category, onDrop, setColumns }) => {
               });
             }}
           >
-            Delete
+            X
           </button>
         </div>
       </div>
       {category.tasks.map((item) => (
-        <Item item={item} key={item.id} />
+        <Item
+          setColumns={setColumns}
+          category={category}
+          item={item}
+          key={item._id}
+        />
       ))}
       <input
         type='text'
         name='task'
         className='add-task-input'
         placeholder='Add new task...'
+        value={newTaskName}
+        onChange={(event) => {
+          setNewTaskName(event.target.value);
+        }}
+        onKeyDown={(event) => {
+          if (event.keyCode === 13) {
+            TaskService.addTask(category, { text: newTaskName }).then(() => {
+              setNewTaskName('');
+              CategoryService.getCategories().then((categories) => {
+                setColumns(categories);
+              });
+            });
+          }
+        }}
       />
     </div>
   );

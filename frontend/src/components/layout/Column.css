@@ -18,17 +18,15 @@
     justify-content: space-between;
 }
 .del-col-btn {
+    background-color: white;
     border: none;
-    width: 70px;
-    height: auto;
-    border-radius: 10px;
-    margin: 0 3px 0 3px;
-    padding: 3px;
-    background-color: rgb(199, 199, 199);
-    font-size: 16px;
     outline: none;
-    overflow: hidden !important;
-    outline: none !important;
+    overflow: hidden;
+    border: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.116);
 }
 
 .del-col-btn:hover {
@@ -40,11 +38,16 @@
 }
 
 .add-task-input{
+    font-weight: 600;
     margin-top: 5px;
     padding-left: 5px;
     background-color:  rgb(243, 243, 243);
     border: none;
-    border-bottom: 1px solid rgb(173, 169, 169);
+    overflow: hidden;
+    outline: none;
+}
+.add-task-input:focus{
+    border-bottom: 1px solid rgb(110, 110, 110);
     overflow: hidden;
     outline: none;
 }

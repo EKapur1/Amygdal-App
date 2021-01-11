@@ -120,8 +120,6 @@ router.put('/tasks/:category_id', auth, async (req, res) => {
     const category = await Category.findOne({ _id: req.params.category_id });
     const decoded = jwt.verify(token, config.get('jwtSecret'));
     const task = {
-      user: decoded.user.id,
-      categoryName: category.name,
       categoryId: category.id,
       text: req.body.text,
     };
@@ -172,7 +170,6 @@ router.put('/:cat_id/:id', [auth], async (req, res) => {
     }
 
     const newTask = {
-      categoryName: category.name,
       categoryId: category._id,
       text: req.body.text,
     };
@@ -184,6 +181,41 @@ router.put('/:cat_id/:id', [auth], async (req, res) => {
     await category.save();
 
     res.json(category.tasks);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    PUT api/category/tasks/:old_id/:new_id
+// @desc     Edit a task by ID
+// @access   Private
+router.put('/tasks/:old_id/:new_id', auth, async (req, res) => {
+  try {
+    const task_id = req.body.task._id;
+    const old_id = req.params.old_id;
+    const new_id = req.params.new_id;
+
+    const oldCategory = await Category.findById(old_id);
+
+    const newCategory = await Category.findById(new_id);
+
+    const newTask = {
+      categoryId: newCategory._id,
+      text: req.body.task.text,
+    };
+
+    newCategory.tasks.unshift(newTask);
+
+    await newCategory.save();
+
+    oldCategory.tasks = oldCategory.tasks.filter((task) => {
+      return task._id != task_id;
+    });
+
+    await oldCategory.save();
+
+    res.json(oldCategory.tasks);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

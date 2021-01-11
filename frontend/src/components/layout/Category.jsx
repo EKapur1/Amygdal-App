@@ -16,8 +16,6 @@ const Category = () => {
 
   const [addCatName, setAddCatName] = useState('');
 
-  const [items, setItems] = useState([]);
-
   const [columns, setColumns] = useState([]);
 
   useEffect(() => {
@@ -29,19 +27,6 @@ const Category = () => {
   const logout = () => {
     localStorage.removeItem('token');
     // setHasToken(false);
-  };
-
-  const onDrop = (event, category) => {
-    let draggedItemID = JSON.parse(event.dataTransfer.getData('itemID'));
-
-    let newItems = items.filter((item) => {
-      if (item.id === draggedItemID) {
-        item.category = category;
-      }
-      return item;
-    });
-
-    setItems(newItems);
   };
 
   const addColumn = (column) => {
@@ -116,7 +101,6 @@ const Category = () => {
             {columns.map((column) => (
               <Column
                 category={column}
-                onDrop={onDrop}
                 key={column._id}
                 setColumns={setColumns}
               />

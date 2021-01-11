@@ -1,23 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CategoryService from '../../services/CategoryService';
+import TaskService from '../../services/TaskService';
 import './Item.css';
-import clock from '../../img/clock.png';
 
-const Item = ({ item }) => {
-  const onDragStart = (event, id) => {
-    event.dataTransfer.setData('itemID', id);
+const Item = ({ item, category, setColumns }) => {
+  const [name, setName] = useState(item.text);
+
+  const onDragStart = (event, item, category) => {
+    event.dataTransfer.setData('category', JSON.stringify(category));
+    event.dataTransfer.setData('item', JSON.stringify(item));
   };
 
   return (
     <div
       className='item'
       draggable={true}
-      onDragStart={(event) => onDragStart(event, item.id)}
+      onDragStart={(event) => onDragStart(event, item, category)}
     >
-      <p>{item.text}</p>
-      <div className='item-footer'>
-        <img src={clock} alt='clock' />{' '}
-        <label htmlFor='date'>{item.date}</label>
-      </div>
+      <input
+        className='edit-task'
+        type='text'
+        value={name}
+        onKeyDown={(event) => {
+          if (event.keyCode === 13) {
+            TaskService.editTask(category, { ...item, text: name }).then(() => {
+              CategoryService.getCategories().then((categories) => {
+                setColumns(categories);
+              });
+            });
+          }
+        }}
+        onChange={(event) => {
+          setName(event.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          TaskService.deleteTask(category, item).then(() => {
+            CategoryService.getCategories().then((categories) => {
+              setColumns(categories);
+            });
+          });
+        }}
+      >
+        X
+      </button>
     </div>
   );
 };
