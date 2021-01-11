@@ -15,7 +15,8 @@ const Item = ({ item }) => {
     >
       <p>{item.text}</p>
       <div className='item-footer'>
-        <img src={clock} alt='clock' /> April 6
+        <img src={clock} alt='clock' />{' '}
+        <label htmlFor='date'>{item.date}</label>
       </div>
     </div>
   );

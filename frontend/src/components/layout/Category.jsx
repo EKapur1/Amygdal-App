@@ -1,36 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import Column from '../layout/Column';
-import { Link } from 'react-router-dom';
-import AuthenticationHelper from '../../helpers/AuthenticationHelper';
+import { Link, Redirect } from 'react-router-dom';
 import './Category.css';
+import CategoryService from '../../services/CategoryService';
 
 const Category = () => {
   const [hasToken, setHasToken] = useState(
     localStorage.getItem('token') ? true : false
   );
 
-  let config = {
-    headers: {
-      'x-auth-token': AuthenticationHelper.getToken(),
-    },
-  };
-
   useEffect(() => {
     if (!localStorage.getItem('token')) setHasToken(false);
     else setHasToken(true);
   }, [hasToken]);
 
-  const [columns, setColumns] = useState([
-    {
-      name: 'Prva kategorija',
-      tasks: [],
-      date: '',
-    },
-  ]);
+  const [addCatName, setAddCatName] = useState('');
 
-  const [items, setItems] = useState([
-    { id: 0, text: 'Play footbal', category: 0 },
-  ]);
+  const [items, setItems] = useState([]);
+
+  const [columns, setColumns] = useState([]);
+
+  useEffect(() => {
+    CategoryService.getCategories().then((categories) => {
+      setColumns(categories);
+    });
+  }, []);
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -51,7 +45,12 @@ const Category = () => {
   };
 
   const addColumn = (column) => {
-    setColumns([...columns, column]);
+    CategoryService.addCategory(column).then(() => {
+      setAddCatName('');
+      CategoryService.getCategories().then((categories) => {
+        setColumns(categories);
+      });
+    });
   };
 
   return (
@@ -61,6 +60,7 @@ const Category = () => {
         <div className='logout-btn-cat'>
           <Link
             style={{
+              boxShadow: ' 0 3px 8px 0 rgba(0,0,0,0.19)',
               backgroundColor: 'white',
               textDecoration: 'none',
               color: 'black',
@@ -75,6 +75,7 @@ const Category = () => {
           <Link
             onClick={logout}
             style={{
+              boxShadow: ' 0 3px 8px 0 rgba(0,0,0,0.19)',
               backgroundColor: 'white',
               textDecoration: 'none',
               color: 'black',
@@ -87,34 +88,43 @@ const Category = () => {
           </Link>
         </div>
       </div>
-      {hasToken && (
+      {hasToken ? (
         <>
           <div className='controlbar'>
+            <input
+              value={addCatName}
+              onChange={(event) => {
+                setAddCatName(event.target.value);
+              }}
+              type='text'
+              placeholder='Add new list'
+              className='add-input'
+            />
             <button
+              type='submit'
               className='add-btn'
               onClick={() =>
                 addColumn({
-                  id: Math.max(...columns.map((col) => col.id)) + 1,
-                  name:
-                    'Column ' + (Math.max(...columns.map((col) => col.id)) + 2),
+                  name: addCatName,
                 })
               }
             >
-              Add new category
+              Add List
             </button>
           </div>
           <div className='container'>
             {columns.map((column) => (
               <Column
-                items={items.filter((item) => item.category === column.id)}
-                category={column.id}
-                name={column.name}
+                category={column}
                 onDrop={onDrop}
-                key={column.id}
+                key={column._id}
+                setColumns={setColumns}
               />
             ))}
           </div>
         </>
+      ) : (
+        <Redirect to='/' />
       )}
     </div>
   );

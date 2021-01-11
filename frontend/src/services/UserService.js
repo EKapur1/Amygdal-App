@@ -9,7 +9,6 @@ class UserService {
       },
     };
     return axios.get('http://localhost:5000/api/users', config).then((res) => {
-      console.log(res.data);
       return {
         loaded: true,
         avatar: res.data.avatar,

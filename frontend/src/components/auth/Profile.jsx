@@ -38,7 +38,7 @@ const Profile = () => {
                   backgroundColor: '#9dd1df',
                   border: 'none',
                   color: 'rgb(36, 35, 35)',
-                  margin: '0 10px 6px 20px',
+                  margin: '0px 10px 6px 20px',
                   padding: '10px',
                   height: '45px',
                   borderRadius: '5px',
@@ -75,9 +75,9 @@ const Profile = () => {
           </div>
         </div>
       ) : (
-        <div class='d-flex justify-content-center'>
-          <div class='spinner-border' role='status'>
-            <span class='sr-only'>Loading...</span>
+        <div className='d-flex justify-content-center'>
+          <div className='spinner-border' role='status'>
+            <span className='sr-only'>Loading...</span>
           </div>
         </div>
       )}
