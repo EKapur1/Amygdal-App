@@ -1,8 +1,8 @@
 Technology: MERN Stack
 
 MongoDB - Atlas MongoDB
-ExpressJS - with typescript
-React - with typescript functional components
+NodeJs & ExpressJS 
+React
 
 Backend Tasks:
 - Auth(login, signup)
